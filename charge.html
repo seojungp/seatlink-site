@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>포인트 충전 | 시트링크</title>
+<meta name="description" content="매장의 PC에 원격으로 접속합니다. 빈 자리를 확인하고 바로 앉으세요.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="draft" role="note">시안 페이지입니다. 좌석, 요금, 공지는 예시이며 로그인과 결제는 동작하지 않습니다.</div>
+<header>
+  <div class="wrap nav">
+    <a class="logo glow" href="index.html">seat<span>//</span>link</a>
+    <nav class="menu" aria-label="주 메뉴">
+      <div class="dd"><button type="button">서비스</button><div class="dd-menu"><a href="seats.html">좌석 현황</a><a href="my.html">내 좌석</a><a href="charge.html">포인트 충전</a><a href="deposit.html">입금확인</a></div></div>
+      <div class="dd"><button type="button">고객지원</button><div class="dd-menu"><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="support.html">1:1 문의</a></div></div>
+    </nav>
+    <a class="btn line sm" href="login.html">로그인</a>
+    <a class="btn fill sm" href="signup.html">회원가입</a>
+  </div>
+  <nav class="mnav" aria-label="모바일 메뉴"><div class="wrap" style="padding:0 8px"><a href="seats.html">좌석 현황</a><a href="my.html">내 좌석</a><a href="charge.html" class="on">포인트 충전</a><a href="deposit.html">입금확인</a><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="support.html">1:1 문의</a></div></nav>
+</header>
+<main class="wrap page">
+  <h1 class="glow">포인트 충전</h1>
+  <p class="sub">충전한 포인트는 이용한 시간만큼 10분 단위로 차감됩니다.</p>
+<nav class="subnav" aria-label="내 서비스"><a href="my.html">내 좌석</a><a href="charge.html" class="on" aria-current="page">포인트 충전</a><a href="deposit.html">입금확인</a><a href="points.html">포인트 이력</a></nav>
+  <div class="two">
+    <div>
+      <h3 style="color:var(--amber);margin:0 0 12px;font-size:19px">요금제</h3>
+      <label class="opt"><input type="radio" name="plan" value="5000" data-p="6000" data-b="0"><div class="t"><b>5,000원 충전</b><span>6,000P</span></div><small>보너스 없음</small></label>
+      <label class="opt on"><input type="radio" name="plan" value="10000" data-p="12000" data-b="600" checked><div class="t"><b>10,000원 충전 <span class="badge">추천</span></b><span>12,000P</span></div><small>보너스 +600P</small></label>
+      <label class="opt"><input type="radio" name="plan" value="30000" data-p="36000" data-b="1200"><div class="t"><b>30,000원 충전</b><span>36,000P</span></div><small>보너스 +1,200P</small></label>
+      <label class="opt"><input type="radio" name="plan" value="50000" data-p="60000" data-b="2400"><div class="t"><b>50,000원 충전</b><span>60,000P</span></div><small>보너스 +2,400P</small></label>
+      <h3 style="color:var(--amber);margin:26px 0 12px;font-size:19px">결제 수단</h3>
+      <label class="opt on"><input type="radio" name="pay" value="card" checked><div class="t"><b>신용·체크카드</b></div><small>국내 카드와 간편결제</small></label>
+      <label class="opt"><input type="radio" name="pay" value="paypal"><div class="t"><b>해외 결제</b></div><small>해외 발급 카드</small></label>
+      <label class="opt"><input type="radio" name="pay" value="bank"><div class="t"><b>무통장 입금</b></div><small>입금한 뒤 입금확인 화면에서 신청합니다.</small></label>
+    </div>
+    <div class="panel">
+      <h3>결제 내용</h3>
+      <div class="sum"><span>기본 포인트</span><span id="c-p">12,000P</span></div>
+      <div class="sum"><span>보너스 포인트</span><span id="c-b">600P</span></div>
+      <div class="sum"><span>받는 포인트</span><span id="c-sum">12,600P</span></div>
+      <div class="sum"><span>이용 가능 시간</span><span id="c-h">약 10시간 30분</span></div>
+      <div class="sum total"><span>결제할 금액</span><span id="c-total">10,000원</span></div>
+      <label class="check" style="margin-top:16px"><input type="checkbox" id="agree"><span>결제 내용과 <a href="terms.html" style="text-decoration:underline;color:var(--amber)">환불 규정</a>을 확인했습니다.</span></label>
+      <div class="err" id="agree-err">환불 규정 확인에 체크해 주세요.</div>
+      <button class="btn fill wide" type="button" id="paybtn" style="margin-top:8px">10,000원 결제하기</button>
+      <div class="msg" id="pay-msg"></div>
+      <div class="hint" style="margin-top:12px">충전 후 7일 안에 쓰지 않은 포인트는 환불받을 수 있습니다.</div>
+    </div>
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="links"><a href="terms.html">이용약관</a><a href="privacy.html">개인정보처리방침</a><a href="support.html">고객센터</a></div>
+    <div class="biz">
+      상호 시트링크 · 대표 ○○○ · 사업자등록번호 000-00-00000 · 통신판매업 신고번호 제0000-○○○○-0000호<br>
+      사업장 주소 ○○시 ○○구 ○○로 00 · 전화 0000-0000 · 이메일 help@seatlink.kr<br>
+      © 2026 seatlink. All rights reserved.
+    </div>
+    <div class="sample">시안 v1.0 · 좌석, 사양, 포인트, 내역, 공지는 화면 구성을 보여 주기 위한 예시 값이며 로그인과 결제는 연결되어 있지 않습니다.</div>
+  </div>
+</footer>
+<script src="app.js"></script>
+<script>
+(function(){
+  function sync(){
+    Array.prototype.forEach.call(document.querySelectorAll('.opt'), function(o){ o.classList.toggle('on', o.querySelector('input').checked); });
+    var p = document.querySelector('input[name=plan]:checked'), total = parseInt(p.value, 10), base = parseInt(p.dataset.p, 10), bonus = parseInt(p.dataset.b, 10), sum = base + bonus;
+    var mins = Math.floor(sum / 200) * 10, h = Math.floor(mins / 60), m = mins % 60;
+    document.getElementById('c-p').textContent = SL.pt(base);
+    document.getElementById('c-b').textContent = SL.pt(bonus);
+    document.getElementById('c-sum').textContent = SL.pt(sum);
+    document.getElementById('c-h').textContent = '약 ' + h + '시간' + (m ? ' ' + m + '분' : '');
+    document.getElementById('c-total').textContent = SL.won(total);
+    var bank = document.querySelector('input[name=pay]:checked').value === 'bank';
+    document.getElementById('paybtn').textContent = bank ? '입금확인 신청하러 가기' : SL.won(total) + ' 결제하기';
+  }
+  document.addEventListener('change', function(e){ if (e.target.type === 'radio') sync(); if (e.target.id === 'agree') document.getElementById('agree-err').classList.remove('show'); });
+  document.getElementById('paybtn').addEventListener('click', function(){
+    var ok = document.getElementById('agree').checked, msg = document.getElementById('pay-msg');
+    document.getElementById('agree-err').classList.toggle('show', !ok);
+    if (!ok) { msg.classList.remove('show'); return; }
+    if (document.querySelector('input[name=pay]:checked').value === 'bank') { location.href = 'deposit.html'; return; }
+    msg.textContent = '시안 화면입니다. 실제 결제는 연결되어 있지 않습니다.'; msg.classList.add('show');
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>로그인 | 시트링크</title>
+<meta name="description" content="매장의 PC에 원격으로 접속합니다. 빈 자리를 확인하고 바로 앉으세요.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="draft" role="note">시안 페이지입니다. 좌석, 요금, 공지는 예시이며 로그인과 결제는 동작하지 않습니다.</div>
+<header>
+  <div class="wrap nav">
+    <a class="logo glow" href="index.html">seat<span>//</span>link</a>
+    <nav class="menu" aria-label="주 메뉴">
+      <div class="dd"><button type="button">서비스</button><div class="dd-menu"><a href="seats.html">좌석 현황</a><a href="my.html">내 좌석</a><a href="charge.html">포인트 충전</a><a href="deposit.html">입금확인</a></div></div>
+      <div class="dd"><button type="button">고객지원</button><div class="dd-menu"><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="support.html">1:1 문의</a></div></div>
+    </nav>
+    <a class="btn line sm" href="login.html">로그인</a>
+    <a class="btn fill sm" href="signup.html">회원가입</a>
+  </div>
+  <nav class="mnav" aria-label="모바일 메뉴"><div class="wrap" style="padding:0 8px"><a href="seats.html">좌석 현황</a><a href="my.html">내 좌석</a><a href="charge.html">포인트 충전</a><a href="deposit.html">입금확인</a><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="support.html">1:1 문의</a></div></nav>
+</header>
+<main class="wrap page">
+  <div class="narrow">
+    <h1 class="glow">로그인</h1>
+    <p class="sub">다시 오신 것을 환영합니다.</p>
+    <form class="panel" id="f" novalidate>
+      <div class="field"><label for="id">이메일 / 아이디</label><input id="id" type="text" autocomplete="username" placeholder="name@example.com" data-req><div class="err" id="id-err">이메일 또는 아이디를 입력해 주세요.</div></div>
+      <div class="field"><label for="pw">비밀번호</label><input id="pw" type="password" autocomplete="current-password" data-req><div class="err" id="pw-err">비밀번호를 입력해 주세요.</div></div>
+      <label class="check"><input type="checkbox"><span>로그인 유지</span></label>
+      <button class="btn fill wide" type="submit">접속하기</button>
+      <div class="msg" id="f-msg">시안 화면입니다. 실제 로그인은 연결되어 있지 않습니다.</div>
+      <div class="links-row"><span>계정이 없으신가요?</span><a href="signup.html">회원가입</a></div>
+    </form>
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="links"><a href="terms.html">이용약관</a><a href="privacy.html">개인정보처리방침</a><a href="support.html">고객센터</a></div>
+    <div class="biz">
+      상호 시트링크 · 대표 ○○○ · 사업자등록번호 000-00-00000 · 통신판매업 신고번호 제0000-○○○○-0000호<br>
+      사업장 주소 ○○시 ○○구 ○○로 00 · 전화 0000-0000 · 이메일 help@seatlink.kr<br>
+      © 2026 seatlink. All rights reserved.
+    </div>
+    <div class="sample">시안 v1.0 · 좌석, 사양, 포인트, 내역, 공지는 화면 구성을 보여 주기 위한 예시 값이며 로그인과 결제는 연결되어 있지 않습니다.</div>
+  </div>
+</footer>
+<script src="app.js"></script>
+<script>
+SL.form('f', 'f-msg');
+</script>
+</body>
+</html>

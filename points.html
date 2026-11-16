@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>포인트 이력 | 시트링크</title>
+<meta name="description" content="매장의 PC에 원격으로 접속합니다. 빈 자리를 확인하고 바로 앉으세요.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="draft" role="note">시안 페이지입니다. 좌석, 요금, 공지는 예시이며 로그인과 결제는 동작하지 않습니다.</div>
+<header>
+  <div class="wrap nav">
+    <a class="logo glow" href="index.html">seat<span>//</span>link</a>
+    <nav class="menu" aria-label="주 메뉴">
+      <div class="dd"><button type="button">서비스</button><div class="dd-menu"><a href="seats.html">좌석 현황</a><a href="my.html">내 좌석</a><a href="charge.html">포인트 충전</a><a href="deposit.html">입금확인</a></div></div>
+      <div class="dd"><button type="button">고객지원</button><div class="dd-menu"><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="support.html">1:1 문의</a></div></div>
+    </nav>
+    <a class="btn line sm" href="login.html">로그인</a>
+    <a class="btn fill sm" href="signup.html">회원가입</a>
+  </div>
+  <nav class="mnav" aria-label="모바일 메뉴"><div class="wrap" style="padding:0 8px"><a href="seats.html">좌석 현황</a><a href="my.html">내 좌석</a><a href="charge.html">포인트 충전</a><a href="deposit.html">입금확인</a><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="support.html">1:1 문의</a></div></nav>
+</header>
+<main class="wrap page">
+  <h1 class="glow">포인트 이력</h1>
+  <p class="sub">충전과 차감 내역을 확인합니다.</p>
+<nav class="subnav" aria-label="내 서비스"><a href="my.html">내 좌석</a><a href="charge.html">포인트 충전</a><a href="deposit.html">입금확인</a><a href="points.html" class="on" aria-current="page">포인트 이력</a></nav>
+  <div class="filters">
+    <span class="lab">유형</span>
+    <button class="tog on" type="button" data-cat="all">전체</button>
+    <button class="tog" type="button" data-cat="pay">결제 충전</button>
+    <button class="tog" type="button" data-cat="bank">무통장입금 충전</button>
+    <button class="tog" type="button" data-cat="use">스트림 차감</button>
+    <button class="tog" type="button" data-cat="admin">관리자 지급</button>
+    <button class="tog" type="button" data-cat="minus">관리자 차감</button>
+  </div>
+  <div class="scroll-x"><table class="list" id="pt">
+    <tr><th>일시</th><th>유형</th><th>변동</th><th>잔액</th><th>설명</th></tr>
+<tr data-c="use"><td>2026.11.16 21:34</td><td>스트림 차감</td><td class="num minus">-250P</td><td class="num">14,400P</td><td>A-15 좌석 이용 (예시)</td></tr>
+<tr data-c="use"><td>2026.11.16 20:10</td><td>스트림 차감</td><td class="num minus">-200P</td><td class="num">14,650P</td><td>A-07 좌석 이용 (예시)</td></tr>
+<tr data-c="pay"><td>2026.11.16 20:05</td><td>결제 충전</td><td class="num plus">+12,600P</td><td class="num">14,850P</td><td>10,000원 충전 (보너스 600P) (예시)</td></tr>
+<tr data-c="use"><td>2026.11.15 23:12</td><td>스트림 차감</td><td class="num minus">-200P</td><td class="num">2,250P</td><td>A-04 좌석 이용 (예시)</td></tr>
+<tr data-c="admin"><td>2026.11.12 10:02</td><td>관리자 지급</td><td class="num plus">+1,000P</td><td class="num">2,450P</td><td>점검 보상 (예시)</td></tr>
+<tr data-c="bank"><td>2026.10.28 22:40</td><td>무통장입금 충전</td><td class="num plus">+12,600P</td><td class="num">1,450P</td><td>10,000원 입금 확인 (예시)</td></tr>
+<tr data-c="minus"><td>2026.10.20 09:15</td><td>관리자 차감</td><td class="num minus">-500P</td><td class="num">0P</td><td>오지급 정정 (예시)</td></tr>
+  </table></div>
+  <div class="empty" id="empty">해당하는 내역이 없습니다.</div>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="links"><a href="terms.html">이용약관</a><a href="privacy.html">개인정보처리방침</a><a href="support.html">고객센터</a></div>
+    <div class="biz">
+      상호 시트링크 · 대표 ○○○ · 사업자등록번호 000-00-00000 · 통신판매업 신고번호 제0000-○○○○-0000호<br>
+      사업장 주소 ○○시 ○○구 ○○로 00 · 전화 0000-0000 · 이메일 help@seatlink.kr<br>
+      © 2026 seatlink. All rights reserved.
+    </div>
+    <div class="sample">시안 v1.0 · 좌석, 사양, 포인트, 내역, 공지는 화면 구성을 보여 주기 위한 예시 값이며 로그인과 결제는 연결되어 있지 않습니다.</div>
+  </div>
+</footer>
+<script>
+(function(){
+  var togs = document.querySelectorAll('[data-cat]');
+  Array.prototype.forEach.call(togs, function(t){ t.addEventListener('click', function(){
+    Array.prototype.forEach.call(togs, function(x){ x.classList.remove('on'); }); t.classList.add('on');
+    var n = 0;
+    Array.prototype.forEach.call(document.querySelectorAll('#pt tr[data-c]'), function(r){ var ok = t.dataset.cat === 'all' || r.dataset.c === t.dataset.cat; r.style.display = ok ? '' : 'none'; if (ok) n++; });
+    document.getElementById('empty').classList.toggle('show', n === 0);
+  }); });
+})();
+</script>
+</body>
+</html>

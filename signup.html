@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>회원가입 | 시트링크</title>
+<meta name="description" content="매장의 PC에 원격으로 접속합니다. 빈 자리를 확인하고 바로 앉으세요.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="draft" role="note">시안 페이지입니다. 좌석, 요금, 공지는 예시이며 로그인과 결제는 동작하지 않습니다.</div>
+<header>
+  <div class="wrap nav">
+    <a class="logo glow" href="index.html">seat<span>//</span>link</a>
+    <nav class="menu" aria-label="주 메뉴">
+      <div class="dd"><button type="button">서비스</button><div class="dd-menu"><a href="seats.html">좌석 현황</a><a href="my.html">내 좌석</a><a href="charge.html">포인트 충전</a><a href="deposit.html">입금확인</a></div></div>
+      <div class="dd"><button type="button">고객지원</button><div class="dd-menu"><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="support.html">1:1 문의</a></div></div>
+    </nav>
+    <a class="btn line sm" href="login.html">로그인</a>
+    <a class="btn fill sm" href="signup.html">회원가입</a>
+  </div>
+  <nav class="mnav" aria-label="모바일 메뉴"><div class="wrap" style="padding:0 8px"><a href="seats.html">좌석 현황</a><a href="my.html">내 좌석</a><a href="charge.html">포인트 충전</a><a href="deposit.html">입금확인</a><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="support.html">1:1 문의</a></div></nav>
+</header>
+<main class="wrap page">
+  <div class="narrow" style="max-width:520px">
+    <h1 class="glow">회원가입</h1>
+    <p class="sub">가입하고 바로 자리에 앉아 보세요.</p>
+    <form class="panel" id="f" novalidate>
+      <div class="field"><label for="nm">이름</label><input id="nm" type="text" autocomplete="name" data-req><div class="err" id="nm-err">이름을 입력해 주세요.</div></div>
+      <div class="field"><label for="nk">별명 (닉네임)</label><input id="nk" type="text" data-req><div class="err" id="nk-err">별명을 입력해 주세요.</div></div>
+      <div class="field"><label for="em">이메일 주소</label><input id="em" type="email" autocomplete="email" placeholder="name@example.com" data-req><div class="err" id="em-err">이메일을 입력해 주세요.</div></div>
+      <div class="field"><label for="p1">비밀번호</label><input id="p1" type="password" autocomplete="new-password" data-req><div class="err" id="p1-err">비밀번호를 입력해 주세요.</div></div>
+      <div class="field"><label for="p2">비밀번호 확인</label><input id="p2" type="password" autocomplete="new-password" data-req data-match="p1"><div class="err" id="p2-err">비밀번호가 서로 다릅니다.</div></div>
+      <label class="check" style="border-bottom:1px solid var(--line);padding-bottom:12px"><input type="checkbox" id="all"><span><b style="color:var(--amber)">전체 동의합니다</b></span></label>
+      <label class="check"><input type="checkbox" id="a1" class="ag" data-req><span>[필수] 이용약관 동의 <a href="terms.html" style="text-decoration:underline;color:var(--amber)">전문보기</a></span></label>
+      <div class="sumbox">본 약관은 시트링크가 운영하는 원격 PC 스트리밍 서비스의 이용에 관한 회사와 이용자의 권리, 의무, 책임을 정합니다. 서비스를 이용하려면 포인트를 충전해야 하며, 분 단위 종량제로 차감됩니다. 충전 후 7일 이내 미사용 포인트는 환불받을 수 있습니다.</div>
+      <div class="err" id="a1-err">이용약관 동의가 필요합니다.</div>
+      <label class="check"><input type="checkbox" id="a2" class="ag" data-req><span>[필수] 개인정보 수집 및 이용 동의 <a href="privacy.html" style="text-decoration:underline;color:var(--amber)">전문보기</a></span></label>
+      <div class="sumbox">수집 항목: 이름, 이메일 주소, 별명, 비밀번호(암호화 저장)<br>수집 목적: 회원 식별과 가입 의사 확인, 서비스 제공, 고지와 통지<br>보유 기간: 회원 탈퇴 시까지. 법령에 따라 보존이 필요한 경우 그 기간<br>동의를 거부하면 회원가입이 제한됩니다.</div>
+      <div class="err" id="a2-err">개인정보 수집 및 이용 동의가 필요합니다.</div>
+      <label class="check"><input type="checkbox" id="a3" class="ag" data-req><span>[필수] 만 14세 이상입니다</span></label>
+      <div class="err" id="a3-err">만 14세 이상만 가입할 수 있습니다.</div>
+      <button class="btn fill wide" type="submit" style="margin-top:10px">계정 생성하기</button>
+      <div class="msg" id="f-msg">시안 화면입니다. 실제 가입은 연결되어 있지 않습니다.</div>
+      <div class="links-row"><span>이미 계정이 있으신가요?</span><a href="login.html">로그인</a></div>
+    </form>
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="links"><a href="terms.html">이용약관</a><a href="privacy.html">개인정보처리방침</a><a href="support.html">고객센터</a></div>
+    <div class="biz">
+      상호 시트링크 · 대표 ○○○ · 사업자등록번호 000-00-00000 · 통신판매업 신고번호 제0000-○○○○-0000호<br>
+      사업장 주소 ○○시 ○○구 ○○로 00 · 전화 0000-0000 · 이메일 help@seatlink.kr<br>
+      © 2026 seatlink. All rights reserved.
+    </div>
+    <div class="sample">시안 v1.0 · 좌석, 사양, 포인트, 내역, 공지는 화면 구성을 보여 주기 위한 예시 값이며 로그인과 결제는 연결되어 있지 않습니다.</div>
+  </div>
+</footer>
+<script src="app.js"></script>
+<script>
+SL.form('f', 'f-msg');
+(function(){
+  var all = document.getElementById('all'), ags = document.querySelectorAll('.ag');
+  all.addEventListener('change', function(){ var v = all.checked; Array.prototype.forEach.call(ags, function(a){ a.checked = v; var err = document.getElementById(a.id + '-err'); if (err && v) err.classList.remove('show'); }); });
+  Array.prototype.forEach.call(ags, function(a){ a.addEventListener('change', function(){ all.checked = Array.prototype.every.call(ags, function(x){ return x.checked; }); }); });
+})();
+</script>
+</body>
+</html>

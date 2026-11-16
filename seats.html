@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>좌석 현황 | 시트링크</title>
+<meta name="description" content="매장의 PC에 원격으로 접속합니다. 빈 자리를 확인하고 바로 앉으세요.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="draft" role="note">시안 페이지입니다. 좌석, 요금, 공지는 예시이며 로그인과 결제는 동작하지 않습니다.</div>
+<header>
+  <div class="wrap nav">
+    <a class="logo glow" href="index.html">seat<span>//</span>link</a>
+    <nav class="menu" aria-label="주 메뉴">
+      <div class="dd"><button type="button">서비스</button><div class="dd-menu"><a href="seats.html">좌석 현황</a><a href="my.html">내 좌석</a><a href="charge.html">포인트 충전</a><a href="deposit.html">입금확인</a></div></div>
+      <div class="dd"><button type="button">고객지원</button><div class="dd-menu"><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="support.html">1:1 문의</a></div></div>
+    </nav>
+    <a class="btn line sm" href="login.html">로그인</a>
+    <a class="btn fill sm" href="signup.html">회원가입</a>
+  </div>
+  <nav class="mnav" aria-label="모바일 메뉴"><div class="wrap" style="padding:0 8px"><a href="seats.html" class="on">좌석 현황</a><a href="my.html">내 좌석</a><a href="charge.html">포인트 충전</a><a href="deposit.html">입금확인</a><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="support.html">1:1 문의</a></div></nav>
+</header>
+<div class="status">
+  <div class="wrap">
+    <span><span class="dot"></span>빈 자리<b id="s-free">0</b></span>
+    <span>사용 중<b id="s-busy">0</b></span>
+    <span>지역<b>서울</b></span>
+    <span class="right">상담 09:00~02:00</span>
+  </div>
+</div>
+<main class="wrap page">
+  <h1 class="glow">좌석 현황</h1>
+  <p class="sub">원하는 사양의 좌석을 골라 접속하세요.</p>
+  <div class="fgrid">
+    <div class="field wide2"><label for="f-q">검색</label><input id="f-q" type="search" placeholder="좌석 이름 또는 지역"></div>
+    <div class="field"><label for="f-gpu">그래픽카드</label><select id="f-gpu"><option value="">전체</option></select></div>
+    <div class="field"><label for="f-cpu">프로세서</label><select id="f-cpu"><option value="">전체</option></select></div>
+    <div class="field"><label for="f-reg">지역</label><select id="f-reg"><option value="">전체</option></select></div>
+    <button class="tog" type="button" id="f-free" style="height:46px">사용 가능한 좌석만</button>
+  </div>
+  <div class="reco">
+    <div><h3>시트링크 추천 좌석</h3><p>고르기 어렵다면 빈 자리 중 하나로 바로 연결합니다.</p></div>
+    <button class="btn fill" type="button" id="reco">추천 좌석으로 바로 연결</button>
+  </div>
+  <div class="two">
+    <div class="board">
+      <div class="board-head"><span>실시간 좌석 현황</span><span>서울 A구역</span></div>
+      <div class="seats" id="seat-grid"></div>
+      <div class="legend">
+        <span><i style="border:1px solid var(--amber)"></i>빈 자리</span>
+        <span><i style="background:#3a2808"></i>사용 중</span>
+        <span><i style="background:var(--amber)"></i>내가 고른 자리</span>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>고른 자리</h3>
+      <dl class="kv">
+        <dt>좌석</dt><dd><b id="d-seat">선택 전</b></dd>
+        <dt>지역</dt><dd id="d-reg">-</dd>
+        <dt>사양</dt><dd id="d-spec">-</dd>
+        <dt>보유 포인트</dt><dd><b>14,400P</b></dd>
+      </dl>
+      <div class="lab mono" style="font-size:13px;color:var(--amber-dim);margin-bottom:6px">화면 프레임</div>
+      <div class="seg" id="fps"><button type="button" class="on" data-p="200">60프레임 · 10분 200P</button><button type="button" data-p="250">144프레임 · 10분 250P</button></div>
+      <button class="btn fill wide" type="button" id="go" disabled>자리를 먼저 골라 주세요</button>
+      <div class="msg" id="go-msg"></div>
+      <div class="hint" style="margin-top:12px">접속하면 10분 단위로 포인트가 먼저 차감됩니다. 한 계정으로 5자리까지 동시에 쓸 수 있습니다.</div>
+    </div>
+  </div>
+  <h2 style="margin-top:44px">좌석 목록</h2>
+  <p class="sub"><span id="cnt">0</span>개 좌석</p>
+  <div class="pcs" id="pcs"></div>
+  <div class="empty" id="empty">조건에 맞는 좌석이 없습니다.</div>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="links"><a href="terms.html">이용약관</a><a href="privacy.html">개인정보처리방침</a><a href="support.html">고객센터</a></div>
+    <div class="biz">
+      상호 시트링크 · 대표 ○○○ · 사업자등록번호 000-00-00000 · 통신판매업 신고번호 제0000-○○○○-0000호<br>
+      사업장 주소 ○○시 ○○구 ○○로 00 · 전화 0000-0000 · 이메일 help@seatlink.kr<br>
+      © 2026 seatlink. All rights reserved.
+    </div>
+    <div class="sample">시안 v1.0 · 좌석, 사양, 포인트, 내역, 공지는 화면 구성을 보여 주기 위한 예시 값이며 로그인과 결제는 연결되어 있지 않습니다.</div>
+  </div>
+</footer>
+<script src="app.js"></script>
+<script>
+(function(){
+  SL.counts();
+  var go = document.getElementById('go'), msg = document.getElementById('go-msg'), cur = null, rate = 200;
+  function show(s){
+    cur = s;
+    document.getElementById('d-seat').textContent = s.name;
+    document.getElementById('d-reg').textContent = s.region;
+    document.getElementById('d-spec').textContent = s.gpu + ' · ' + s.cpu + ' · ' + s.ram;
+    go.disabled = false; go.textContent = s.name + ' 자리로 접속'; msg.classList.remove('show');
+  }
+  var b = SL.board(document.getElementById('seat-grid'), show);
+  Array.prototype.forEach.call(document.querySelectorAll('#fps button'), function(x){ x.addEventListener('click', function(){
+    Array.prototype.forEach.call(document.querySelectorAll('#fps button'), function(y){ y.classList.remove('on'); }); x.classList.add('on'); rate = parseInt(x.dataset.p, 10);
+  }); });
+  go.addEventListener('click', function(){
+    msg.textContent = '시안 화면입니다. 실제 서비스에서는 접속기가 열리며 ' + cur.name + ' 자리로 연결되고 10분마다 ' + SL.pt(rate) + '가 차감됩니다.';
+    msg.classList.add('show');
+  });
+  document.getElementById('reco').addEventListener('click', function(){
+    var free = SL.seats.filter(function(s){ return !s.busy; });
+    if (free.length) { b.pick(free[0].no); document.getElementById('seat-grid').scrollIntoView({ block: 'center' }); }
+  });
+  var pcs = document.getElementById('pcs');
+  function uniq(k){ var o = {}; SL.seats.forEach(function(s){ o[s[k]] = 1; }); return Object.keys(o); }
+  [['f-gpu','gpu'],['f-cpu','cpu'],['f-reg','region']].forEach(function(p){ var sel = document.getElementById(p[0]); uniq(p[1]).forEach(function(v){ var o = document.createElement('option'); o.textContent = v; sel.appendChild(o); }); });
+  SL.seats.forEach(function(s){
+    var c = document.createElement('div'); c.className = 'pc' + (s.busy ? ' busy' : ''); c.dataset.no = s.no;
+    c.innerHTML = '<div class="top"><span class="nm">' + s.name + '</span><span class="st ' + (s.busy ? 'wait' : 'done') + '">' + (s.busy ? '사용 중' : '사용 가능') + '</span></div>' +
+      '<dl><dt>그래픽</dt><dd>' + s.gpu + '</dd><dt>프로세서</dt><dd>' + s.cpu + '</dd><dt>메모리</dt><dd>' + s.ram + '</dd><dt>지역</dt><dd>' + s.region + '</dd></dl>' +
+      '<button class="btn ' + (s.busy ? 'line' : 'fill') + '" type="button"' + (s.busy ? ' disabled' : '') + '>' + (s.busy ? '사용 중' : '사용하기') + '</button>';
+    if (!s.busy) c.querySelector('button').addEventListener('click', function(){ b.pick(s.no); document.getElementById('seat-grid').scrollIntoView({ block: 'center' }); });
+    pcs.appendChild(c);
+  });
+  var freeOnly = false;
+  function apply(){
+    var q = document.getElementById('f-q').value.trim(), g = document.getElementById('f-gpu').value, c = document.getElementById('f-cpu').value, r = document.getElementById('f-reg').value, n = 0;
+    SL.seats.forEach(function(s){
+      var ok = (!g || s.gpu === g) && (!c || s.cpu === c) && (!r || s.region === r) && (!freeOnly || !s.busy) && (!q || (s.name + ' ' + s.region).indexOf(q) !== -1);
+      pcs.querySelector('[data-no="' + s.no + '"]').classList.toggle('hide', !ok);
+      document.querySelector('#seat-grid [data-no="' + s.no + '"]').classList.toggle('dim', !ok);
+      if (ok) n++;
+    });
+    document.getElementById('cnt').textContent = n;
+    document.getElementById('empty').classList.toggle('show', n === 0);
+  }
+  ['f-q','f-gpu','f-cpu','f-reg'].forEach(function(id){ var el = document.getElementById(id); el.addEventListener('input', apply); el.addEventListener('change', apply); });
+  document.getElementById('f-free').addEventListener('click', function(){ freeOnly = !freeOnly; this.classList.toggle('on', freeOnly); apply(); });
+  apply();
+})();
+</script>
+</body>
+</html>
