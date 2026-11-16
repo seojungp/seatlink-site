@@ -14,14 +14,15 @@ var SL = (function(){
     var mine = null;
     seats.forEach(function(s){
       var el = document.createElement('button');
-      el.type = 'button'; el.className = 'seat' + (s.busy ? ' busy' : ''); el.textContent = s.name.slice(2);
+      el.type = 'button'; el.className = 'seat' + (s.busy ? ' busy' : ''); el.innerHTML = '<span>' + s.name.slice(2) + '</span><small>' + (s.busy ? '사용 중' : '가능') + '</small>';
+      el.setAttribute('aria-pressed','false');
       el.dataset.no = s.no;
       el.setAttribute('aria-label', s.name + (s.busy ? ' 사용 중' : ' 빈 자리'));
       if (s.busy) el.disabled = true;
-      el.addEventListener('click', function(){ if (mine) mine.classList.remove('mine'); mine = el; el.classList.add('mine'); onPick(s); });
+      el.addEventListener('click', function(){ if (mine) { mine.classList.remove('mine'); mine.setAttribute('aria-pressed','false'); } mine = el; el.classList.add('mine'); el.setAttribute('aria-pressed','true'); onPick(s); });
       grid.appendChild(el);
     });
-    return { pick: function(no){ var el = grid.querySelector('[data-no="' + no + '"]'); if (el && !el.disabled) el.click(); } };
+    return { clear: function(){ if(mine){ mine.classList.remove('mine'); mine.setAttribute('aria-pressed','false'); mine=null; } }, pick: function(no){ var el = grid.querySelector('[data-no="' + no + '"]'); if (el && !el.disabled) el.click(); } };
   }
   function form(id, msgId){
     var f = document.getElementById(id), msg = document.getElementById(msgId);
@@ -55,7 +56,8 @@ var SL = (function(){
     }); });
     if (q) q.addEventListener('input', apply);
   }
+  function duration(points, rate){ var mins = Math.floor(points / rate) * 10, h = Math.floor(mins / 60), m = mins % 60; return '약 ' + (h ? h + '시간' : '') + (m ? ' ' + m + '분' : ''); }
   function won(n){ return n.toLocaleString('ko-KR') + '원'; }
   function pt(n){ return n.toLocaleString('ko-KR') + 'P'; }
-  return { seats: seats, counts: counts, board: board, form: form, filterList: filterList, won: won, pt: pt };
+  return { duration: duration, seats: seats, counts: counts, board: board, form: form, filterList: filterList, won: won, pt: pt };
 })();

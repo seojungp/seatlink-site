@@ -4,138 +4,284 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>좌석 현황 | 시트링크</title>
-<meta name="description" content="매장의 PC에 원격으로 접속합니다. 빈 자리를 확인하고 바로 앉으세요.">
+<meta name="theme-color" content="#101216">
+<title>좌석 찾기 | 시트링크</title>
+<meta name="description" content="내 기기는 그대로, 자리는 시트링크. 원격 PC방 좌석과 사양, 요금을 한눈에 확인하세요.">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="modern.css">
 </head>
 <body>
-<div class="draft" role="note">시안 페이지입니다. 좌석, 요금, 공지는 예시이며 로그인과 결제는 동작하지 않습니다.</div>
+<svg width="0" height="0" aria-hidden="true" style="position:absolute;overflow:hidden">
+<defs>
+<symbol id="i-monitor" viewBox="0 0 24 24">
+<rect x="3" y="4" width="18" height="13" rx="2"/>
+<path d="M8 21h8m-4-4v4"/>
+</symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24">
+<path d="M5 12h14m-6-6 6 6-6 6"/>
+</symbol>
+<symbol id="i-download" viewBox="0 0 24 24">
+<path d="M12 3v12m-5-5 5 5 5-5M4 16v4h16v-4"/>
+</symbol>
+<symbol id="i-grid" viewBox="0 0 24 24">
+<rect x="3" y="3" width="7" height="7" rx="1"/>
+<rect x="14" y="3" width="7" height="7" rx="1"/>
+<rect x="3" y="14" width="7" height="7" rx="1"/>
+<rect x="14" y="14" width="7" height="7" rx="1"/>
+</symbol>
+<symbol id="i-wallet" viewBox="0 0 24 24">
+<rect x="3" y="5" width="18" height="15" rx="2"/>
+<path d="M3 8h18m-6 4h6v5h-6zM6 5V3h12"/>
+</symbol>
+<symbol id="i-help" viewBox="0 0 24 24">
+<path d="M21 11a9 9 0 0 1-9 9H5l-4 2 2-6A9 9 0 1 1 21 11Z"/>
+<path d="M9 8a3 3 0 0 1 6 0c0 2-3 2-3 4m0 3v.1"/>
+</symbol>
+<symbol id="i-shield" viewBox="0 0 24 24">
+<path d="m12 2 8 3v7c0 5-8 10-8 10S4 17 4 12V5z"/>
+<path d="m8 12 3 3 5-6"/>
+</symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24">
+<path d="m13 2-9 12h7l-1 8 10-13h-7z"/>
+</symbol>
+<symbol id="i-menu" viewBox="0 0 24 24">
+<path d="M4 6h16M4 12h16M4 18h16"/>
+</symbol>
+<symbol id="i-chip" viewBox="0 0 24 24">
+<rect x="6" y="6" width="12" height="12" rx="2"/>
+<path d="M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4"/>
+<rect x="9" y="9" width="6" height="6"/>
+</symbol>
+<symbol id="i-window" viewBox="0 0 24 24">
+<rect x="3" y="4" width="18" height="16" rx="2"/>
+<path d="M3 8h18M7 6h.1m3 0h.1"/>
+</symbol>
+</defs>
+</svg>
+<a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
+<div class="draft" role="note">
+<b>DESIGN PREVIEW</b>디자인 시안 · 좌석과 요금은 예시이며 로그인·결제·접속기는 연결되어 있지 않습니다.</div>
 <header>
-  <div class="wrap nav">
-    <a class="logo glow" href="index.html">seat<span>//</span>link</a>
-    <nav class="menu" aria-label="주 메뉴">
-      <div class="dd"><button type="button">서비스</button><div class="dd-menu"><a href="seats.html">좌석 현황</a><a href="my.html">내 좌석</a><a href="charge.html">포인트 충전</a><a href="deposit.html">입금확인</a></div></div>
-      <div class="dd"><button type="button">고객지원</button><div class="dd-menu"><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="support.html">1:1 문의</a></div></div>
-    </nav>
-    <a class="btn line sm" href="login.html">로그인</a>
-    <a class="btn fill sm" href="signup.html">회원가입</a>
-  </div>
-  <nav class="mnav" aria-label="모바일 메뉴"><div class="wrap" style="padding:0 8px"><a href="seats.html" class="on">좌석 현황</a><a href="my.html">내 좌석</a><a href="charge.html">포인트 충전</a><a href="deposit.html">입금확인</a><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="support.html">1:1 문의</a></div></nav>
-</header>
-<div class="status">
-  <div class="wrap">
-    <span><span class="dot"></span>빈 자리<b id="s-free">0</b></span>
-    <span>사용 중<b id="s-busy">0</b></span>
-    <span>지역<b>서울</b></span>
-    <span class="right">상담 09:00~02:00</span>
-  </div>
+<div class="wrap nav">
+<a class="logo" href="index.html" aria-label="시트링크 홈">seat<span>//</span>link</a>
+<nav class="menu" aria-label="주 메뉴">
+<a href="seats.html" class="on" aria-current="page">좌석 찾기</a>
+<a href="charge.html">요금 · 충전</a>
+<a href="index.html#how">이용 안내</a>
+<a href="faq.html">고객지원</a>
+</nav>
+<div class="auth">
+<a href="login.html">로그인</a>
+<a class="btn fill sm" href="signup.html">회원가입</a>
 </div>
-<main class="wrap page">
-  <h1 class="glow">좌석 현황</h1>
-  <p class="sub">원하는 사양의 좌석을 골라 접속하세요.</p>
-  <div class="fgrid">
-    <div class="field wide2"><label for="f-q">검색</label><input id="f-q" type="search" placeholder="좌석 이름 또는 지역"></div>
-    <div class="field"><label for="f-gpu">그래픽카드</label><select id="f-gpu"><option value="">전체</option></select></div>
-    <div class="field"><label for="f-cpu">프로세서</label><select id="f-cpu"><option value="">전체</option></select></div>
-    <div class="field"><label for="f-reg">지역</label><select id="f-reg"><option value="">전체</option></select></div>
-    <button class="tog" type="button" id="f-free" style="height:46px">사용 가능한 좌석만</button>
-  </div>
-  <div class="reco">
-    <div><h3>시트링크 추천 좌석</h3><p>고르기 어렵다면 빈 자리 중 하나로 바로 연결합니다.</p></div>
-    <button class="btn fill" type="button" id="reco">추천 좌석으로 바로 연결</button>
-  </div>
-  <div class="two">
-    <div class="board">
-      <div class="board-head"><span>실시간 좌석 현황</span><span>서울 A구역</span></div>
-      <div class="seats" id="seat-grid"></div>
-      <div class="legend">
-        <span><i style="border:1px solid var(--amber)"></i>빈 자리</span>
-        <span><i style="background:#3a2808"></i>사용 중</span>
-        <span><i style="background:var(--amber)"></i>내가 고른 자리</span>
-      </div>
-    </div>
-    <div class="panel">
-      <h3>고른 자리</h3>
-      <dl class="kv">
-        <dt>좌석</dt><dd><b id="d-seat">선택 전</b></dd>
-        <dt>지역</dt><dd id="d-reg">-</dd>
-        <dt>사양</dt><dd id="d-spec">-</dd>
-        <dt>보유 포인트</dt><dd><b>14,400P</b></dd>
-      </dl>
-      <div class="lab mono" style="font-size:13px;color:var(--amber-dim);margin-bottom:6px">화면 프레임</div>
-      <div class="seg" id="fps"><button type="button" class="on" data-p="200">60프레임 · 10분 200P</button><button type="button" data-p="250">144프레임 · 10분 250P</button></div>
-      <button class="btn fill wide" type="button" id="go" disabled>자리를 먼저 골라 주세요</button>
-      <div class="msg" id="go-msg"></div>
-      <div class="hint" style="margin-top:12px">접속하면 10분 단위로 포인트가 먼저 차감됩니다. 한 계정으로 5자리까지 동시에 쓸 수 있습니다.</div>
-    </div>
-  </div>
-  <h2 style="margin-top:44px">좌석 목록</h2>
-  <p class="sub"><span id="cnt">0</span>개 좌석</p>
-  <div class="pcs" id="pcs"></div>
-  <div class="empty" id="empty">조건에 맞는 좌석이 없습니다.</div>
+<button class="mobile-more" id="menu-toggle" type="button" aria-label="전체 메뉴" aria-expanded="false" aria-controls="mobile-drawer">
+<svg class="icon" aria-hidden="true">
+<use href="#i-menu">
+</use>
+</svg>
+</button>
+</div>
+<nav class="mobile-drawer" id="mobile-drawer" aria-label="전체 메뉴" hidden>
+<a href="index.html">홈</a>
+<a href="index.html#how">이용 안내</a>
+<a href="notice.html">공지사항</a>
+<a href="support.html">1:1 문의</a>
+<a href="deposit.html">입금확인</a>
+<a href="points.html">포인트 이력</a>
+</nav>
+</header>
+<nav class="mnav" aria-label="모바일 메뉴">
+<a href="seats.html" class="on" aria-current="page">
+<svg class="icon" aria-hidden="true">
+<use href="#i-grid">
+</use>
+</svg>
+<span>좌석 찾기</span>
+</a>
+<a href="my.html">
+<svg class="icon" aria-hidden="true">
+<use href="#i-monitor">
+</use>
+</svg>
+<span>내 좌석</span>
+</a>
+<a href="charge.html">
+<svg class="icon" aria-hidden="true">
+<use href="#i-wallet">
+</use>
+</svg>
+<span>충전</span>
+</a>
+<a href="faq.html">
+<svg class="icon" aria-hidden="true">
+<use href="#i-help">
+</use>
+</svg>
+<span>도움말</span>
+</a>
+</nav>
+<main class="wrap page" id="main-content">
+<div class="page-heading">
+<div>
+<span class="eyebrow">FIND YOUR SEAT</span>
+<h1>나에게 맞는 자리 찾기</h1>
+<p class="sub">사양과 프레임을 비교하고, 원하는 좌석을 골라보세요.</p>
+</div>
+<a class="arrow-link" href="index.html#how">처음 이용하시나요? <svg class="icon" aria-hidden="true">
+<use href="#i-arrow">
+</use>
+</svg>
+</a>
+</div>
+<div class="fgrid">
+<div class="field wide2">
+<label for="f-q">좌석 검색</label>
+<input type="search" id="f-q" placeholder="좌석 번호, 지역, 그래픽카드">
+</div>
+<div class="field">
+<label for="f-gpu">그래픽카드</label>
+<select id="f-gpu">
+<option value="">전체 그래픽카드</option>
+</select>
+</div>
+<div class="field">
+<label for="f-cpu">프로세서</label>
+<select id="f-cpu">
+<option value="">전체 프로세서</option>
+</select>
+</div>
+<div class="field">
+<label for="f-reg">지역</label>
+<select id="f-reg">
+<option value="">전체 지역</option>
+</select>
+</div>
+</div>
+<div class="reco">
+<div>
+<h3>고민될 땐, 추천 좌석으로.</h3>
+<p>현재 검색 조건에 맞는 이용 가능 좌석을 골라드립니다.</p>
+</div>
+<button class="btn fill" type="button" id="reco">추천 좌석 선택 <svg class="icon" aria-hidden="true">
+<use href="#i-arrow">
+</use>
+</svg>
+</button>
+</div>
+<div class="seat-layout">
+<div>
+<div class="view-tools">
+<p>
+<b id="cnt">18</b>개 좌석 <small>· 예시 데이터</small>
+</p>
+<div class="seg" role="group" aria-label="좌석 보기 방식">
+<button type="button" class="on" aria-pressed="true" data-view="list">목록</button>
+<button type="button" aria-pressed="false" data-view="map">좌석판</button>
+</div>
+</div>
+<div class="filters">
+<button type="button" id="f-free" class="tog on" aria-pressed="true">이용 가능한 좌석만</button>
+<button type="button" id="filter-reset" class="tog">조건 초기화</button>
+</div>
+<div id="pcs" class="pcs">
+</div>
+<div class="board" id="map-panel" hidden>
+<div class="board-head">
+<span>서울 A구역 · 좌석 미리보기</span>
+<span>18 SEATS</span>
+</div>
+<div class="seats" id="seat-grid">
+</div>
+<div class="legend">
+<span>
+<i>
+</i>이용 가능</span>
+<span>
+<i class="legend-busy">
+</i>사용 중</span>
+<span>
+<i class="legend-selected">
+</i>선택한 좌석</span>
+</div>
+</div>
+<div id="empty" class="empty" role="status">조건에 맞는 좌석이 없습니다.<br>검색 조건을 바꾸거나 초기화해 주세요.</div>
+</div>
+<aside class="panel selection-panel" aria-label="선택한 좌석">
+<div class="card-top">
+<span>SELECTED SEAT</span>
+<span class="available" id="selected-status">이용 가능</span>
+</div>
+<div class="selected-pc">
+<div class="monitor">
+<svg class="icon" aria-hidden="true">
+<use href="#i-monitor">
+</use>
+</svg>
+</div>
+<div>
+<div class="pc-title" id="d-seat">좌석 선택</div>
+<p>서울 A구역 · 예시</p>
+</div>
+</div>
+<dl class="kv">
+<dt>그래픽카드</dt>
+<dd id="d-gpu">—</dd>
+<dt>프로세서</dt>
+<dd id="d-cpu">—</dd>
+<dt>메모리</dt>
+<dd id="d-ram">—</dd>
+</dl>
+<div style="font-size:11px;color:var(--muted)">화면 프레임</div>
+<div class="seg" id="fps" role="group" aria-label="접속 프레임">
+<button type="button" class="on" aria-pressed="true" data-rate="200">60프레임</button>
+<button type="button" aria-pressed="false" data-rate="250">144프레임</button>
+</div>
+<div class="selected-rate">
+<b id="seat-rate">200P</b>
+<small> / 10분</small>
+</div>
+<p class="hint" style="margin-top:0">접속 시 10분 단위로 먼저 차감됩니다.</p>
+<div class="balance">
+<span>보유 포인트 <small>(예시)</small>
+</span>
+<b>14,400P</b>
+</div>
+<p class="hint" id="seat-duration">60프레임 기준 약 12시간 이용 가능</p>
+<button class="btn fill wide" type="button" id="go" disabled>자리를 먼저 골라 주세요</button>
+<div class="msg" id="go-msg" role="status">
+</div>
+<p class="hint" style="margin:14px 0 0">시안에서는 실제 접속이나 포인트 차감이 발생하지 않습니다.</p>
+</aside>
+</div>
 </main>
 <footer>
-  <div class="wrap">
-    <div class="links"><a href="terms.html">이용약관</a><a href="privacy.html">개인정보처리방침</a><a href="support.html">고객센터</a></div>
-    <div class="biz">
-      상호 시트링크 · 대표 ○○○ · 사업자등록번호 000-00-00000 · 통신판매업 신고번호 제0000-○○○○-0000호<br>
-      사업장 주소 ○○시 ○○구 ○○로 00 · 전화 0000-0000 · 이메일 help@seatlink.kr<br>
-      © 2026 seatlink. All rights reserved.
-    </div>
-    <div class="sample">시안 v1.0 · 좌석, 사양, 포인트, 내역, 공지는 화면 구성을 보여 주기 위한 예시 값이며 로그인과 결제는 연결되어 있지 않습니다.</div>
-  </div>
+<div class="wrap">
+<div class="footer-top">
+<div>
+<a class="logo" href="index.html">seat<span>//</span>link</a>
+<p class="footer-tagline">내 기기는 그대로, 자리는 시트링크.</p>
+</div>
+<div class="links">
+<a href="notice.html">공지사항</a>
+<a href="faq.html">자주 묻는 질문</a>
+<a href="support.html">고객센터</a>
+<a href="terms.html">이용약관</a>
+<a href="privacy.html">개인정보처리방침</a>
+</div>
+</div>
+<div class="biz">상호 시트링크 · 대표 ○○○ · 사업자등록번호 000-00-00000 · 통신판매업 신고번호 제0000-○○○○-0000호<br>사업장 주소 ○○시 ○○구 ○○로 00 · 전화 0000-0000 · 이메일 help@seatlink.kr</div>
+<div class="sample">디자인 시안 v2.0 · 좌석·사양·포인트·내역·공지는 예시입니다. 로그인·결제·접속기 다운로드 및 원격 접속은 연결되어 있지 않습니다.</div>
+<div class="copyright">
+<span>© 2026 seatlink. All rights reserved.</span>
+<span>YOUR SEAT. ANYWHERE.</span>
+</div>
+</div>
 </footer>
-<script src="app.js"></script>
-<script>
-(function(){
-  SL.counts();
-  var go = document.getElementById('go'), msg = document.getElementById('go-msg'), cur = null, rate = 200;
-  function show(s){
-    cur = s;
-    document.getElementById('d-seat').textContent = s.name;
-    document.getElementById('d-reg').textContent = s.region;
-    document.getElementById('d-spec').textContent = s.gpu + ' · ' + s.cpu + ' · ' + s.ram;
-    go.disabled = false; go.textContent = s.name + ' 자리로 접속'; msg.classList.remove('show');
-  }
-  var b = SL.board(document.getElementById('seat-grid'), show);
-  Array.prototype.forEach.call(document.querySelectorAll('#fps button'), function(x){ x.addEventListener('click', function(){
-    Array.prototype.forEach.call(document.querySelectorAll('#fps button'), function(y){ y.classList.remove('on'); }); x.classList.add('on'); rate = parseInt(x.dataset.p, 10);
-  }); });
-  go.addEventListener('click', function(){
-    msg.textContent = '시안 화면입니다. 실제 서비스에서는 접속기가 열리며 ' + cur.name + ' 자리로 연결되고 10분마다 ' + SL.pt(rate) + '가 차감됩니다.';
-    msg.classList.add('show');
-  });
-  document.getElementById('reco').addEventListener('click', function(){
-    var free = SL.seats.filter(function(s){ return !s.busy; });
-    if (free.length) { b.pick(free[0].no); document.getElementById('seat-grid').scrollIntoView({ block: 'center' }); }
-  });
-  var pcs = document.getElementById('pcs');
-  function uniq(k){ var o = {}; SL.seats.forEach(function(s){ o[s[k]] = 1; }); return Object.keys(o); }
-  [['f-gpu','gpu'],['f-cpu','cpu'],['f-reg','region']].forEach(function(p){ var sel = document.getElementById(p[0]); uniq(p[1]).forEach(function(v){ var o = document.createElement('option'); o.textContent = v; sel.appendChild(o); }); });
-  SL.seats.forEach(function(s){
-    var c = document.createElement('div'); c.className = 'pc' + (s.busy ? ' busy' : ''); c.dataset.no = s.no;
-    c.innerHTML = '<div class="top"><span class="nm">' + s.name + '</span><span class="st ' + (s.busy ? 'wait' : 'done') + '">' + (s.busy ? '사용 중' : '사용 가능') + '</span></div>' +
-      '<dl><dt>그래픽</dt><dd>' + s.gpu + '</dd><dt>프로세서</dt><dd>' + s.cpu + '</dd><dt>메모리</dt><dd>' + s.ram + '</dd><dt>지역</dt><dd>' + s.region + '</dd></dl>' +
-      '<button class="btn ' + (s.busy ? 'line' : 'fill') + '" type="button"' + (s.busy ? ' disabled' : '') + '>' + (s.busy ? '사용 중' : '사용하기') + '</button>';
-    if (!s.busy) c.querySelector('button').addEventListener('click', function(){ b.pick(s.no); document.getElementById('seat-grid').scrollIntoView({ block: 'center' }); });
-    pcs.appendChild(c);
-  });
-  var freeOnly = false;
-  function apply(){
-    var q = document.getElementById('f-q').value.trim(), g = document.getElementById('f-gpu').value, c = document.getElementById('f-cpu').value, r = document.getElementById('f-reg').value, n = 0;
-    SL.seats.forEach(function(s){
-      var ok = (!g || s.gpu === g) && (!c || s.cpu === c) && (!r || s.region === r) && (!freeOnly || !s.busy) && (!q || (s.name + ' ' + s.region).indexOf(q) !== -1);
-      pcs.querySelector('[data-no="' + s.no + '"]').classList.toggle('hide', !ok);
-      document.querySelector('#seat-grid [data-no="' + s.no + '"]').classList.toggle('dim', !ok);
-      if (ok) n++;
-    });
-    document.getElementById('cnt').textContent = n;
-    document.getElementById('empty').classList.toggle('show', n === 0);
-  }
-  ['f-q','f-gpu','f-cpu','f-reg'].forEach(function(id){ var el = document.getElementById(id); el.addEventListener('input', apply); el.addEventListener('change', apply); });
-  document.getElementById('f-free').addEventListener('click', function(){ freeOnly = !freeOnly; this.classList.toggle('on', freeOnly); apply(); });
-  apply();
-})();
+<script src="app.js">
+</script>
+<script src="ui.js">
+</script>
+<script src="seats.js">
 </script>
 </body>
 </html>
