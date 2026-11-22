@@ -40,3 +40,30 @@
 .account-signup .agree-box strong{color:var(--ink-2);font-weight:600}
 @media(max-width:1000px){.account-signup .account-layout{grid-template-columns:1fr;gap:30px}}
 @media(max-width:480px){.field-grid{grid-template-columns:1fr;gap:0}}
+
+/* 첫 화면 좌석 패널: 좌석 찾기 기능 포함 */
+.seat-finder .filter-bar{gap:6px;margin:14px 0 10px}
+.seat-finder .chip{min-height:32px;padding:4px 11px;font-size:12px}
+.seat-finder .empty-state{font-size:13px;color:var(--ink-3);padding:14px 0}
+.seat-finder .seat-rate{flex-direction:row;align-items:center;gap:14px;margin-top:14px;padding-top:14px}
+.seat-finder .seat-rate>span{font-size:13px;white-space:nowrap}
+.seat-finder .seg{margin:0;flex:1}
+.seat-finder .seg button{min-height:34px;padding:6px 10px;font-size:13px}
+.seat-finder .panel-bottom{margin-top:14px;padding-top:14px}
+.seat-finder .home-seat-usage strong b{color:var(--primary);font-weight:700}
+.seat-finder .reco-link{display:inline-block;margin-top:7px;padding:0;border:0;background:none;color:var(--ink-3);font-size:13px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.seat-finder .reco-link:hover{color:var(--primary)}
+.seat-finder .reco-link:disabled{opacity:.4;cursor:not-allowed}
+.seat-finder #seat-detail{padding:0;border:0;border-radius:0;background:none;position:static}
+.seat-finder .status-available{white-space:nowrap}
+
+/* 첫 화면 좌석 패널: 게임 검색, 추천 PC 연결 */
+.game-find{margin-top:16px}
+.game-find input{width:100%;min-height:42px;padding:9px 14px;border:1px solid var(--line);border-radius:9px;background:#0a101a;color:var(--ink);font:inherit;font-size:14px}
+.game-find input::placeholder{color:var(--ink-4)}
+.game-find input:focus{outline:0;border-color:var(--primary)}
+.game-results{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.game-results[hidden]{display:none}
+.game-results p{font-size:12.5px;line-height:1.6;color:var(--ink-3)}
+.seat-finder .game-results .chip{min-height:30px;padding:3px 11px;font-size:12px}
+.seat-finder a.reco-link{color:var(--ink-3)}

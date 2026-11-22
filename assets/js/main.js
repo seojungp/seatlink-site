@@ -99,7 +99,7 @@
   if (seatGrid) {
     const seats = $$('.seat', seatGrid);
     const RATE = 200;
-    let selected = null, filter = 'all', frame = 60;
+    let selected = null, filter = 'all', frame = 60, pickedGame = '';
     const filterMatches = el => filter === 'all' || (filter === '144' ? el.dataset.frame === '144' : el.dataset.gpu.endsWith(filter));
     const matches = el => filterMatches(el) && (frame === 60 || el.dataset.frame === '144');
     const pool = () => seats.filter(el => !el.disabled && matches(el));
@@ -115,7 +115,8 @@
       $('#sd-gpu').textContent = el.dataset.gpu;
       $('#sd-cpu').textContent = el.dataset.cpu;
       $('#sd-ram').textContent = el.dataset.ram + ' GB';
-      $('#sd-frame').textContent = `${frame}프레임`;
+      const frameLabel = $('#sd-frame');
+      if (frameLabel) frameLabel.textContent = `${frame}프레임`;
       $('#sd-price').textContent = time(6000, RATE);
       $('#seat-cash-note').textContent = `시간당 약 ${number(Math.round(5000 / ((Math.floor(6000 / RATE) * 10) / 60)))}원 · 10분당 ${RATE}P 차감`;
       $('#seat-charge').href = `charge.html?seat=${encodeURIComponent(el.dataset.id)}&plan=5000`;
@@ -147,9 +148,45 @@
     }));
     $('#recommend-seat').addEventListener('click', () => {
       const candidates = pool().sort((a, b) => Number(b.dataset.gpu.slice(-4)) - Number(a.dataset.gpu.slice(-4)) || Number(b.dataset.ram) - Number(a.dataset.ram));
+      if (!candidates.length) return;
       selectSeat(candidates[0]);
-      if (selected) { selected.focus(); toast(`${selected.dataset.id} · ${selected.dataset.gpu} 좌석을 선택했어요.`); }
+      if (!selected) return;
+      selected.focus();
+      if (!$('#recommend-seat').hasAttribute('data-connect')) { toast(`${selected.dataset.id} · ${selected.dataset.gpu} 좌석을 선택했어요.`); return; }
+      // 홈 패널: 추천 PC로 바로 연결 (시안: 로그인 확인까지만)
+      let loggedIn = false;
+      try { loggedIn = sessionStorage.getItem('sl_demo_login') === '1'; } catch (e) {}
+      if (!loggedIn) { location.href = 'login.html?next=index.html'; return; }
+      toast(`${pickedGame ? pickedGame + ' · ' : ''}${selected.dataset.id} (${selected.dataset.gpu}) PC에 연결합니다. 디자인 시안이라 실제 접속은 연결되어 있지 않습니다.`);
     });
+    // 홈 패널: 이용 가능한 게임 검색 (목록은 시안용 예시)
+    const gameInput = $('#game-search');
+    if (gameInput) {
+      const GAMES = ['리니지', '리니지2', '리니지W', '아이온2', '로스트아크', '메이플스토리', '던전앤파이터', '배틀그라운드', '리그 오브 레전드', '발로란트', '오버워치 2', '서든어택', 'FC 온라인'];
+      const box = $('#game-results');
+      const key = text => text.toLowerCase().replace(/\s+/g, '');
+      const note = text => { const p = document.createElement('p'); p.textContent = text; box.replaceChildren(p); };
+      gameInput.addEventListener('input', () => {
+        pickedGame = '';
+        const q = key(gameInput.value);
+        box.hidden = !q;
+        if (!q) { box.replaceChildren(); return; }
+        const hits = GAMES.filter(name => key(name).includes(q)).slice(0, 6);
+        if (!hits.length) { note('목록에 없는 게임입니다. 1:1 문의로 이용 가능 여부를 확인해 주세요.'); return; }
+        box.replaceChildren(...hits.map(name => {
+          const hit = document.createElement('button');
+          hit.type = 'button';
+          hit.className = 'chip';
+          hit.textContent = name;
+          hit.addEventListener('click', () => {
+            pickedGame = name;
+            gameInput.value = name;
+            note(`${name} · 이용 가능합니다. 아래에서 자리를 고르거나 추천 PC로 연결하세요.`);
+          });
+          return hit;
+        }));
+      });
+    }
     let requested = params.get('seat') || 'A-15';
     if (/^\d{1,2}$/.test(requested)) requested = 'A-' + requested.padStart(2, '0');
     selected = seats.find(el => el.dataset.id === requested && !el.disabled) || null;
