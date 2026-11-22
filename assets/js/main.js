@@ -11,6 +11,9 @@
     50000: { base: 50000, bonus: 20000 }
   };
   const number = n => n.toLocaleString('ko-KR');
+  // 결제 금액 = 공급가 + 부가세 10%
+  const VAT_RATE = 0.1;
+  const vatOf = supply => Math.round(supply * VAT_RATE);
   const time = (points, rate) => {
     const minutes = Math.floor(points / rate) * 10;
     const hours = Math.floor(minutes / 60), rest = minutes % 60;
@@ -120,7 +123,7 @@
       if (frameLabel) frameLabel.textContent = `${frame}프레임`;
       const priceLabel = $('#sd-price'), cashNote = $('#seat-cash-note');
       if (priceLabel) priceLabel.textContent = time(6000, RATE);
-      if (cashNote) cashNote.textContent = `시간당 약 ${number(Math.round(5000 / ((Math.floor(6000 / RATE) * 10) / 60)))}원 · 10분당 ${RATE}P 차감`;
+      if (cashNote) cashNote.textContent = `시간당 약 ${number(Math.round(5500 / ((Math.floor(6000 / RATE) * 10) / 60)))}원 · 10분당 ${RATE}P 차감`;
       $('#seat-charge').href = `charge.html?seat=${encodeURIComponent(el.dataset.id)}&plan=5000`;
     }
     function apply() {
@@ -220,8 +223,11 @@
       $('#cs-bonus').textContent = number(plan.bonus) + 'P';
       $('#cs-total').textContent = number(total) + 'P';
       $('#cs-time').textContent = time(total, rate);
-      $('#cs-pay').textContent = number(amount) + '원';
-      $('[data-pay-total]').textContent = number(amount) + '원';
+      const vat = vatOf(amount), pay = amount + vat;
+      $('#cs-supply').textContent = number(amount) + '원';
+      $('#cs-vat').textContent = number(vat) + '원';
+      $('#cs-pay').textContent = number(pay) + '원';
+      $('[data-pay-total]').textContent = number(pay) + '원';
     }
     $$('.plan-pick [data-amount]').forEach(button => button.addEventListener('click', () => { amount = Number(button.dataset.amount); render(); }));
     agree.addEventListener('change', () => {

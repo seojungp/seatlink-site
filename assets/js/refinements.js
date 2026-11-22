@@ -12,7 +12,7 @@
     if (!summary) return;
     const amount = Number($('.plan-pick [aria-pressed="true"]').dataset.amount);
     const rate = 200;
-    $('#cs-hourly').textContent = `약 ${number(hourly(amount, plans[amount], rate))}원`;
+    $('#cs-hourly').textContent = `약 ${number(hourly(Math.round(amount * 1.1), plans[amount], rate))}원`;
   }
   $$('.plan-pick [data-amount]').forEach(button => button.addEventListener('click', updateSummary));
   updateSummary();
