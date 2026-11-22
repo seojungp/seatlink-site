@@ -15,11 +15,6 @@
     document.getElementById('home-rate-note').textContent=(rate===200?'60':'144')+'프레임 · 10분 '+rate+'P · 부가세 포함 · 10분 단위 선차감';
   }
   document.querySelectorAll('[data-home-rate]').forEach(function(btn){btn.addEventListener('click',function(){rate=Number(btn.dataset.homeRate);pricing();});});
-  document.getElementById('game-search').addEventListener('input',function(){
-    var q=this.value.trim().toLowerCase(),n=0;
-    document.querySelectorAll('[data-game]').forEach(function(card){var match=card.dataset.game.toLowerCase().includes(q);card.hidden=!match;if(match)n++;});
-    document.getElementById('game-empty').classList.toggle('show',n===0);
-  });
   document.getElementById('download-button').addEventListener('click',function(){document.getElementById('download-feedback').hidden=false;});
   pricing();
 })();

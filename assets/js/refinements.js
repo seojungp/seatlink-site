@@ -7,24 +7,6 @@
   const hourly = (amount, points, rate) => Math.round(amount / (duration(points, rate) / 60));
   const plans = { 5000: 6000, 10000: 12600, 30000: 37200, 50000: 62400 };
 
-  const search = $('#game-search');
-  if (search) {
-    const cards = $$('#games-grid .game-card');
-    const normalize = s => s.normalize('NFKC').toLowerCase().replace(/\s+/g, '');
-    function filter() {
-      const query = normalize(search.value.trim());
-      let count = 0;
-      cards.forEach(card => { card.hidden = !normalize(card.dataset.game).includes(query); if (!card.hidden) count++; });
-      $('#game-count').textContent = query ? `검색 결과 ${count}개` : '문의할 게임 4개';
-      $('#game-empty').hidden = count > 0;
-      $('#games-grid').hidden = count === 0;
-      $('#game-inquiry').href = 'support.html' + (search.value.trim() ? '?game=' + encodeURIComponent(search.value.trim().slice(0, 80)) : '');
-    }
-    search.addEventListener('input', filter);
-    search.addEventListener('search', filter);
-    $('#game-reset').addEventListener('click', () => { search.value = ''; filter(); search.focus(); });
-  }
-
   function updatePlanPrices() {
     const rate = Number($('.price-heading [aria-pressed="true"]')?.dataset.rate || 200);
     $$('#plan-grid .plan-card').forEach(card => {
