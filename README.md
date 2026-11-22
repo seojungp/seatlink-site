@@ -17,7 +17,7 @@ python3 -m http.server 8765 --bind 127.0.0.1
 - 충전: 금액에 따른 이용 시간과 시간당 원화 환산 금액 (요금은 프레임과 상관없이 10분당 200P)
 - 홈에는 금액·포인트 수치·요금표를 노출하지 않으며 상세 요금은 로그인 후 `charge.html`에서 확인(시안용 로그인: 탭 단위 표시만 저장)
 - 계정: Supabase Auth 로 실제 회원가입·로그인 (`assets/js/auth.js`, 연결 정보는 `assets/js/config.js` — 공개용 키만). `charge.html`·`my.html` 은 로그인 필요
-- 기존 내 PC·포인트 이력·입금확인·공지사항·개인정보처리방침은 유지하고 같은 디자인으로 통일
+- 기존 내 PC·포인트 이력·입금확인(포인트 충전에 통합)·공지사항·개인정보처리방침은 유지하고 같은 디자인으로 통일
 - 13개 HTML과 `assets/`의 CSS·JavaScript·이미지로 구성
 - 기존 부가 화면에서 사용하는 `app.js`는 유지. 이전 `style.css`, `modern.css`, 기타 JavaScript는 호환용으로 보존
 

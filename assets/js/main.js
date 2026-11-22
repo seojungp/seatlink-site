@@ -220,9 +220,25 @@
       submit.disabled = !agree.checked;
       $('#cs-msg').textContent = agree.checked ? '디자인 시안입니다. 실제 결제는 발생하지 않습니다.' : '약관 안내를 확인하면 시안 흐름을 체험할 수 있습니다.';
     });
+    const bankBox = $('#bank-box'), bankName = $('#bank-name');
+    const isBank = () => $('input[name="pay"]:checked').value === 'bank';
+    $$('input[name="pay"]').forEach(radio => radio.addEventListener('change', () => {
+      bankBox.hidden = !isBank();
+      $('#cs-action').textContent = isBank() ? '입금확인 신청' : '충전 화면 확인';
+    }));
     $('#charge-form').addEventListener('submit', event => {
       event.preventDefault();
       if (!agree.checked) return;
+      if (isBank()) {
+        if (!bankName.value.trim()) {
+          $('#cs-msg').textContent = '입금자 이름을 입력해 주세요.';
+          bankName.focus();
+          return;
+        }
+        $('#cs-msg').textContent = '입금확인 신청 화면을 확인했어요. 디자인 시안으로 실제 신청은 접수되지 않았습니다.';
+        toast('디자인 시안으로 실제 입금확인 신청은 접수되지 않습니다.');
+        return;
+      }
       $('#cs-msg').textContent = '충전 화면 확인이 끝났어요. 실제 결제나 포인트 충전은 진행되지 않았습니다.';
       toast('디자인 시안으로 실제 결제는 진행되지 않습니다.');
     });
