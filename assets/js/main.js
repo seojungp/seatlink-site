@@ -146,7 +146,7 @@
       $$('.seat-rate [data-frame-pick]').forEach(other => other.setAttribute('aria-pressed', String(other === button)));
       apply();
     }));
-    $('#recommend-seat').addEventListener('click', () => {
+    $('#recommend-seat').addEventListener('click', async () => {
       const candidates = pool().sort((a, b) => Number(b.dataset.gpu.slice(-4)) - Number(a.dataset.gpu.slice(-4)) || Number(b.dataset.ram) - Number(a.dataset.ram));
       if (!candidates.length) return;
       selectSeat(candidates[0]);
@@ -154,9 +154,10 @@
       selected.focus();
       if (!$('#recommend-seat').hasAttribute('data-connect')) { toast(`${selected.dataset.id} · ${selected.dataset.gpu} 좌석을 선택했어요.`); return; }
       // 홈 패널: 추천 PC로 바로 연결 (시안: 로그인 확인까지만)
-      let loggedIn = false;
-      try { loggedIn = sessionStorage.getItem('sl_demo_login') === '1'; } catch (e) {}
-      if (!loggedIn) { location.href = 'login.html?next=index.html'; return; }
+      const picked = selected;
+      const session = window.SL_AUTH ? await window.SL_AUTH.session() : null;
+      if (!session) { location.href = 'login.html?next=index.html'; return; }
+      selected = picked;
       toast(`${pickedGame ? pickedGame + ' · ' : ''}${selected.dataset.id} (${selected.dataset.gpu}) PC에 연결합니다. 디자인 시안이라 실제 접속은 연결되어 있지 않습니다.`);
     });
     // 홈 패널: 이용 가능한 게임 검색 (목록은 시안용 예시)

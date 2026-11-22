@@ -67,3 +67,6 @@
 .game-results p{font-size:12.5px;line-height:1.6;color:var(--ink-3)}
 .seat-finder .game-results .chip{min-height:30px;padding:3px 11px;font-size:12px}
 .seat-finder a.reco-link{color:var(--ink-3)}
+
+/* 로그인해야 보는 화면: 로그인 확인이 끝날 때까지 본문을 숨긴다 */
+html[data-auth="required"]:not([data-auth-ok]) body{visibility:hidden}
