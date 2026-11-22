@@ -40,7 +40,37 @@
     return hit ? hit[1] : '처리하지 못했습니다. 잠시 후 다시 시도해 주세요.';
   };
 
-  function showLoggedIn() {
+  function showLoggedIn(session) {
+    const user = session.user || {};
+    const meta = user.user_metadata || {};
+    const nick = String(meta.nickname || meta.name || (user.email || '').split('@')[0] || '회원').slice(0, 20);
+    // 포인트 원장은 아직 없다. 충전·차감 기능을 붙일 때 실제 잔액으로 바꾼다.
+    const points = 0;
+    const pointsLink = () => {
+      const link = document.createElement('a');
+      link.className = 'user-points';
+      link.href = 'charge.html';
+      const value = document.createElement('b');
+      value.textContent = points.toLocaleString('ko-KR');
+      link.append('포인트: ', value, 'P');
+      return link;
+    };
+    const nameLink = () => {
+      const link = document.createElement('a');
+      link.className = 'user-name';
+      link.href = 'my.html';
+      link.textContent = nick + '님';
+      return link;
+    };
+    const cta = $('.head-cta');
+    if (cta) cta.prepend(nameLink(), pointsLink());
+    const mobile = $('.menu-account');
+    if (mobile) {
+      const line = document.createElement('li');
+      line.className = 'menu-user';
+      line.append(nameLink(), pointsLink());
+      mobile.before(line);
+    }
     $$('.login-link, .menu-account a[href="login.html"]').forEach(link => {
       link.textContent = '로그아웃';
       link.setAttribute('href', '#');
@@ -54,7 +84,7 @@
   }
 
   const ready = getSession().then(session => {
-    if (session) showLoggedIn();
+    if (session) showLoggedIn(session);
     // 로그인해야 보는 화면: 확인될 때까지 본문을 숨기고, 로그인 상태가 아니면 로그인 화면으로 보낸다.
     if (root.dataset.auth === 'required') {
       if (session) root.dataset.authOk = '1';

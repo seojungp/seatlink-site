@@ -74,3 +74,27 @@ html[data-auth="required"]:not([data-auth-ok]) body{visibility:hidden}
 /* 푸터: 서비스 목록을 뺀 2단 구성 */
 @media(min-width:701px){.foot-grid{grid-template-columns:3fr 1fr}}
 @media(max-width:700px){.foot-grid{grid-template-columns:1fr}}
+
+/* 로그인 후 헤더: 별명, 포인트 */
+.user-name{font-size:14px;font-weight:700;color:var(--primary);white-space:nowrap}
+.user-points{display:inline-flex;align-items:center;gap:3px;min-height:38px;padding:0 13px;border:1px solid var(--line);border-radius:8px;background:#0e141e;font-size:13px;color:var(--ink-3);white-space:nowrap}
+.user-points b{color:var(--accent);font-weight:700;margin-left:3px}
+.user-points:hover{border-color:var(--primary)}
+.menu-user{display:flex;align-items:center;gap:14px;border-top:1px solid var(--line);padding-top:20px}
+@media(max-width:760px){.head-cta .user-name{display:none}}
+@media(max-width:480px){.head-cta .user-points{display:none}}
+
+/* 내 PC */
+.mypc{text-align:center}
+.legacy-page .mypc-title{font:700 46px var(--display);letter-spacing:.02em;color:var(--primary);text-shadow:0 0 26px #42dff455}
+.mypc-sub{font-size:17px;color:var(--ink-3);margin-top:16px}
+.mypc-count{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:11px 22px;border:1px solid var(--primary);border-radius:999px;font-size:15px;color:var(--ink-2)}
+.mypc-count i{width:9px;height:9px;border-radius:50%;background:#3ddc84}
+.mypc-count b{color:var(--accent);font:700 17px var(--display)}
+.mypc .subnav{justify-content:center}
+.mypc-empty{padding:70px 0 40px}
+.mypc-empty svg{width:76px;height:76px;fill:none;stroke:var(--ink-4);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.legacy-page .mypc-empty h2{font-size:24px;margin:26px 0 12px}
+.mypc-empty p{font-size:16px;color:var(--ink-3)}
+.mypc-empty .btn{margin-top:28px}
+@media(max-width:700px){.legacy-page .mypc-title{font-size:34px}.mypc-empty{padding:46px 0 20px}.legacy-page .mypc-empty h2{font-size:20px}.mypc-empty p{font-size:14px}}
