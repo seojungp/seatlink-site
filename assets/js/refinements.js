@@ -9,7 +9,7 @@
 
   function updateSummary() {
     const summary = $('#charge-summary');
-    if (!summary) return;
+    if (!summary || !$('#cs-hourly')) return;
     const amount = Number($('.plan-pick [aria-pressed="true"]').dataset.amount);
     const rate = 200;
     $('#cs-hourly').textContent = `약 ${number(hourly(Math.round(amount * 1.1), plans[amount], rate))}원`;
