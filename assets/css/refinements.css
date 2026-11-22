@@ -70,3 +70,7 @@
 
 /* 로그인해야 보는 화면: 로그인 확인이 끝날 때까지 본문을 숨긴다 */
 html[data-auth="required"]:not([data-auth-ok]) body{visibility:hidden}
+
+/* 푸터: 서비스 목록을 뺀 2단 구성 */
+@media(min-width:701px){.foot-grid{grid-template-columns:3fr 1fr}}
+@media(max-width:700px){.foot-grid{grid-template-columns:1fr}}
