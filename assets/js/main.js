@@ -204,7 +204,7 @@
   const support = $('#support-form');
   if (support) {
     const game = params.get('game');
-    if (game) $('#sf-title').value = game.slice(0, 80) + ' 이용 문의';
+    if (game) $('#sf-body').value = game.slice(0, 80) + ' 이용 문의\n';
     support.addEventListener('submit', event => {
       event.preventDefault();
       $('#sf-msg').textContent = '문의 작성 화면을 확인했어요. 디자인 시안으로 실제 문의는 전송되지 않습니다.';
