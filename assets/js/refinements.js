@@ -43,6 +43,12 @@
       confirm.addEventListener('input', checkPassword);
       $('#auth-password').addEventListener('input', checkPassword);
     }
+    const agreeAll = $('#agree-all');
+    if (agreeAll) {
+      const checks = $$('.agree-check', account);
+      agreeAll.addEventListener('change', () => checks.forEach(box => { box.checked = agreeAll.checked; }));
+      checks.forEach(box => box.addEventListener('change', () => { agreeAll.checked = checks.every(item => item.checked); }));
+    }
     const next = new URLSearchParams(location.search).get('next') || '';
     const safeNext = /^[a-z]+\.html(\?[\w=&.%-]*)?$/.test(next) ? next : '';
     if (account.dataset.mode === 'login' && safeNext) $('#account-msg').textContent = '로그인 후 이용할 수 있습니다.';
