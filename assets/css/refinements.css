@@ -113,3 +113,9 @@ html[data-auth="required"]:not([data-auth-ok]) body{visibility:hidden}
 .account-intro h1.intro-lead{font-size:34px;line-height:1.45;letter-spacing:-.04em}
 @media(max-width:1150px){.account-intro h1.intro-lead{font-size:28px}}
 @media(max-width:700px){.account-intro h1.intro-lead{font-size:24px}}
+
+/* 첫 화면 좌석 패널: 게임 검색 + 추천 PC 연결 한 줄 */
+.game-row{display:flex;gap:8px;align-items:stretch}
+.game-row input{flex:1;min-width:0}
+.game-row .btn{flex:none;height:auto;min-height:42px;padding-inline:16px;white-space:nowrap}
+.seat-finder .panel-bottom .btn{flex:none}

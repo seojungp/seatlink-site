@@ -117,8 +117,9 @@
       $('#sd-ram').textContent = el.dataset.ram + ' GB';
       const frameLabel = $('#sd-frame');
       if (frameLabel) frameLabel.textContent = `${frame}프레임`;
-      $('#sd-price').textContent = time(6000, RATE);
-      $('#seat-cash-note').textContent = `시간당 약 ${number(Math.round(5000 / ((Math.floor(6000 / RATE) * 10) / 60)))}원 · 10분당 ${RATE}P 차감`;
+      const priceLabel = $('#sd-price'), cashNote = $('#seat-cash-note');
+      if (priceLabel) priceLabel.textContent = time(6000, RATE);
+      if (cashNote) cashNote.textContent = `시간당 약 ${number(Math.round(5000 / ((Math.floor(6000 / RATE) * 10) / 60)))}원 · 10분당 ${RATE}P 차감`;
       $('#seat-charge').href = `charge.html?seat=${encodeURIComponent(el.dataset.id)}&plan=5000`;
     }
     function apply() {
@@ -167,6 +168,12 @@
       const box = $('#game-results');
       const key = text => text.toLowerCase().replace(/\s+/g, '');
       const note = text => { const p = document.createElement('p'); p.textContent = text; box.replaceChildren(p); };
+      gameInput.addEventListener('keydown', event => {
+        if (event.key !== 'Enter') return;
+        event.preventDefault();
+        const first = $('button', box);
+        if (first) first.click(); else $('#recommend-seat').click();
+      });
       gameInput.addEventListener('input', () => {
         pickedGame = '';
         const q = key(gameInput.value);
@@ -182,7 +189,7 @@
           hit.addEventListener('click', () => {
             pickedGame = name;
             gameInput.value = name;
-            note(`${name} · 이용 가능합니다. 아래에서 자리를 고르거나 추천 PC로 연결하세요.`);
+            note(`${name} · 이용 가능합니다. 추천 PC 연결을 누르면 이 게임에 맞는 PC로 연결합니다.`);
           });
           return hit;
         }));
