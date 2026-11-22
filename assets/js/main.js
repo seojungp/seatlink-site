@@ -7,7 +7,7 @@
     // 기본 포인트는 충전 금액과 같고(1원 = 1P), 나머지가 보너스다.
     5000: { base: 5000, bonus: 1000 },
     10000: { base: 10000, bonus: 3000 },
-    30000: { base: 30000, bonus: 7200 },
+    30000: { base: 30000, bonus: 10000 },
     50000: { base: 50000, bonus: 12400 }
   };
   const number = n => n.toLocaleString('ko-KR');

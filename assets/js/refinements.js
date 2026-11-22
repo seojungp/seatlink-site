@@ -5,7 +5,7 @@
   const number = value => value.toLocaleString('ko-KR');
   const duration = (points, rate) => Math.floor(points / rate) * 10;
   const hourly = (amount, points, rate) => Math.round(amount / (duration(points, rate) / 60));
-  const plans = { 5000: 6000, 10000: 13000, 30000: 37200, 50000: 62400 };
+  const plans = { 5000: 6000, 10000: 13000, 30000: 40000, 50000: 62400 };
 
   function updateSummary() {
     const summary = $('#charge-summary');
