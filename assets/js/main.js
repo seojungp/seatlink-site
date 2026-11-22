@@ -4,10 +4,11 @@
   const $$ = (s, root = document) => [...root.querySelectorAll(s)];
   const params = new URLSearchParams(location.search);
   const PLANS = {
-    5000: { base: 6000, bonus: 0 },
-    10000: { base: 12000, bonus: 600 },
-    30000: { base: 36000, bonus: 1200 },
-    50000: { base: 60000, bonus: 2400 }
+    // 기본 포인트는 충전 금액과 같고(1원 = 1P), 나머지가 보너스다.
+    5000: { base: 5000, bonus: 1000 },
+    10000: { base: 10000, bonus: 2600 },
+    30000: { base: 30000, bonus: 7200 },
+    50000: { base: 50000, bonus: 12400 }
   };
   const number = n => n.toLocaleString('ko-KR');
   const time = (points, rate) => {
