@@ -17,33 +17,6 @@
   $$('.plan-pick [data-amount], #charge-summary [data-rate]').forEach(button => button.addEventListener('click', updateSummary));
   updateSummary();
 
-  const tabs = $$('.guide-tabs [role="tab"]');
-  function activate(tab, focus = false) {
-    tabs.forEach(other => {
-      const selected = tab === other;
-      other.setAttribute('aria-selected', String(selected));
-      other.tabIndex = selected ? 0 : -1;
-      document.getElementById(other.getAttribute('aria-controls')).hidden = !selected;
-    });
-    if (focus) tab.focus();
-  }
-  tabs.forEach((tab, i) => {
-    tab.addEventListener('click', () => activate(tab));
-    tab.addEventListener('keydown', event => {
-      let target;
-      if (event.key === 'ArrowDown' || event.key === 'ArrowRight') target = tabs[(i + 1) % tabs.length];
-      if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') target = tabs[(i + tabs.length - 1) % tabs.length];
-      if (event.key === 'Home') target = tabs[0];
-      if (event.key === 'End') target = tabs[tabs.length - 1];
-      if (target) { event.preventDefault(); activate(target, true); }
-    });
-  });
-  const guideList = $('.guide-tabs');
-  if (guideList) {
-    const orientation = () => guideList.setAttribute('aria-orientation', innerWidth <= 950 ? 'horizontal' : 'vertical');
-    orientation(); addEventListener('resize', orientation);
-  }
-
   const account = $('#account-form');
   if (account) {
     const confirm = $('#auth-password-confirm');
