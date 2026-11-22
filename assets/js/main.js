@@ -94,20 +94,6 @@
     selectHome(homeSeats.find(el => el.dataset.id === 'A-15'));
   }
 
-  // Pricing cards and their links share one active frame selection.
-  const planGrid = $('#plan-grid');
-  if (planGrid) $$('.price-heading [data-rate]').forEach(button => button.addEventListener('click', () => {
-    const rate = Number(button.dataset.rate);
-    $$('.price-heading [data-rate]').forEach(other => other.setAttribute('aria-pressed', String(other === button)));
-    $$('.plan-card', planGrid).forEach(card => {
-      $('[data-time]', card).textContent = time(Number(card.dataset.points), rate);
-      const link = $('a', card), url = new URL(link.href);
-      url.searchParams.set('rate', rate);
-      link.href = url.href;
-    });
-    $('#pricing-rate-note').textContent = `${rate === 200 ? '60' : '144'}프레임 · 10분 ${rate}P`;
-  }));
-
   // Seat page: GPU filter, compatible frame selection, recommendation, and handoff.
   const seatGrid = $('#seat-grid');
   if (seatGrid) {

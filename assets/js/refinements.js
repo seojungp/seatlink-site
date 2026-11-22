@@ -7,16 +7,6 @@
   const hourly = (amount, points, rate) => Math.round(amount / (duration(points, rate) / 60));
   const plans = { 5000: 6000, 10000: 12600, 30000: 37200, 50000: 62400 };
 
-  function updatePlanPrices() {
-    const rate = Number($('.price-heading [aria-pressed="true"]')?.dataset.rate || 200);
-    $$('#plan-grid .plan-card').forEach(card => {
-      const price = hourly(Number(card.dataset.amount), Number(card.dataset.points), rate);
-      $('[data-hourly]', card).textContent = `시간당 약 ${number(price)}원`;
-    });
-  }
-  $$('.price-heading [data-rate]').forEach(button => button.addEventListener('click', updatePlanPrices));
-  if ($('#plan-grid')) updatePlanPrices();
-
   function updateSummary() {
     const summary = $('#charge-summary');
     if (!summary) return;
