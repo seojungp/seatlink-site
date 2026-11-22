@@ -11,10 +11,10 @@
     const summary = $('#charge-summary');
     if (!summary) return;
     const amount = Number($('.plan-pick [aria-pressed="true"]').dataset.amount);
-    const rate = Number($('[data-rate][aria-pressed="true"]', summary).dataset.rate);
+    const rate = 200;
     $('#cs-hourly').textContent = `약 ${number(hourly(amount, plans[amount], rate))}원`;
   }
-  $$('.plan-pick [data-amount], #charge-summary [data-rate]').forEach(button => button.addEventListener('click', updateSummary));
+  $$('.plan-pick [data-amount]').forEach(button => button.addEventListener('click', updateSummary));
   updateSummary();
 
   // 시안용 로그인 상태: 이 브라우저 탭에 표시만 남기며 입력 정보는 저장·전송하지 않는다.

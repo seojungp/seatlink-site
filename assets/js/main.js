@@ -98,9 +98,10 @@
   const seatGrid = $('#seat-grid');
   if (seatGrid) {
     const seats = $$('.seat', seatGrid);
-    let selected = null, filter = 'all', rate = 200;
+    const RATE = 200;
+    let selected = null, filter = 'all', frame = 60;
     const filterMatches = el => filter === 'all' || (filter === '144' ? el.dataset.frame === '144' : el.dataset.gpu.endsWith(filter));
-    const matches = el => filterMatches(el) && (rate === 200 || el.dataset.frame === '144');
+    const matches = el => filterMatches(el) && (frame === 60 || el.dataset.frame === '144');
     const pool = () => seats.filter(el => !el.disabled && matches(el));
     function selectSeat(el) {
       if (!el || el.disabled || !matches(el)) return;
@@ -114,10 +115,10 @@
       $('#sd-gpu').textContent = el.dataset.gpu;
       $('#sd-cpu').textContent = el.dataset.cpu;
       $('#sd-ram').textContent = el.dataset.ram + ' GB';
-      $('#sd-frame').textContent = `${rate === 200 ? '60' : '144'}프레임`;
-      $('#sd-price').textContent = time(6000, rate);
-      $('#seat-cash-note').textContent = `시간당 약 ${number(Math.round(5000 / ((Math.floor(6000 / rate) * 10) / 60)))}원 · 10분당 ${rate}P 차감`;
-      $('#seat-charge').href = `charge.html?seat=${encodeURIComponent(el.dataset.id)}&plan=5000&rate=${rate}`;
+      $('#sd-frame').textContent = `${frame}프레임`;
+      $('#sd-price').textContent = time(6000, RATE);
+      $('#seat-cash-note').textContent = `시간당 약 ${number(Math.round(5000 / ((Math.floor(6000 / RATE) * 10) / 60)))}원 · 10분당 ${RATE}P 차감`;
+      $('#seat-charge').href = `charge.html?seat=${encodeURIComponent(el.dataset.id)}&plan=5000`;
     }
     function apply() {
       seats.forEach(el => { el.hidden = !matches(el); });
@@ -139,9 +140,9 @@
       $$('.filter-bar [data-filter]').forEach(other => other.setAttribute('aria-pressed', String(other === button)));
       apply();
     }));
-    $$('.seat-rate [data-rate]').forEach(button => button.addEventListener('click', () => {
-      rate = Number(button.dataset.rate);
-      $$('.seat-rate [data-rate]').forEach(other => other.setAttribute('aria-pressed', String(other === button)));
+    $$('.seat-rate [data-frame-pick]').forEach(button => button.addEventListener('click', () => {
+      frame = Number(button.dataset.framePick);
+      $$('.seat-rate [data-frame-pick]').forEach(other => other.setAttribute('aria-pressed', String(other === button)));
       apply();
     }));
     $('#recommend-seat').addEventListener('click', () => {
@@ -159,16 +160,8 @@
   const summary = $('#charge-summary');
   if (summary) {
     let amount = Object.hasOwn(PLANS, params.get('plan')) ? Number(params.get('plan')) : 10000;
-    let rate = params.get('rate') === '250' ? 250 : 200;
+    const rate = 200; // 프레임과 상관없이 10분당 200P
     const seat = params.get('seat');
-    const validSeat = /^A-(02|04|05|07|10|12|15|18)$/.test(seat || '');
-    if (validSeat && seat !== 'A-12') {
-      rate = 200;
-      const highFrame = $('[data-rate="250"]', summary);
-      highFrame.disabled = true;
-      highFrame.title = '선택한 좌석은 60프레임을 지원합니다.';
-      highFrame.setAttribute('aria-label', '144프레임 · 선택한 좌석에서 지원하지 않음');
-    }
     if (seat && /^A-(02|04|05|07|10|12|15|18)$/.test(seat)) {
       $('#charge-seat-info').textContent = `선택한 좌석 ${seat} · 서울 A구역`;
       $('#charge-seat-info').hidden = false;
@@ -177,16 +170,14 @@
     function render() {
       const plan = PLANS[amount], total = plan.base + plan.bonus;
       $$('.plan-pick [data-amount]').forEach(el => el.setAttribute('aria-pressed', String(Number(el.dataset.amount) === amount)));
-      $$('[data-rate]', summary).forEach(el => el.setAttribute('aria-pressed', String(Number(el.dataset.rate) === rate)));
       $('#cs-base').textContent = number(plan.base) + 'P';
       $('#cs-bonus').textContent = number(plan.bonus) + 'P';
       $('#cs-total').textContent = number(total) + 'P';
-      $('#cs-time').textContent = time(total, rate) + ` (${rate === 200 ? '60' : '144'}프레임)`;
+      $('#cs-time').textContent = time(total, rate);
       $('#cs-pay').textContent = number(amount) + '원';
       $('[data-pay-total]').textContent = number(amount) + '원';
     }
     $$('.plan-pick [data-amount]').forEach(button => button.addEventListener('click', () => { amount = Number(button.dataset.amount); render(); }));
-    $$('[data-rate]', summary).forEach(button => button.addEventListener('click', () => { rate = Number(button.dataset.rate); render(); }));
     agree.addEventListener('change', () => {
       submit.disabled = !agree.checked;
       $('#cs-msg').textContent = agree.checked ? '디자인 시안입니다. 실제 결제는 발생하지 않습니다.' : '약관 안내를 확인하면 시안 흐름을 체험할 수 있습니다.';
